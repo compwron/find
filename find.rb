@@ -14,7 +14,7 @@ OptionParser.new do |opts|
     options[:starting_path] = pattern
   end
 
-  opts.on("-e N", "--expression N ", "Files matching pattern") do |pattern|
+  opts.on("-n N", "--name N ", "Files matching pattern") do |pattern|
     options[:match_pattern] = pattern
   end
 end.parse!

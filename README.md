@@ -8,8 +8,8 @@ Note: this is not precisely the contract of `man find` and it should be (TODO)
 ```(bash)
   ruby find.rb 
   ruby find.rb --path <dir>
-  ruby find.rb --expression <expression> # example: "*.rb"
-  ruby find.rb --path <dir> --expression <expression>
+  ruby find.rb --name <expression> # example: "*.rb"
+  ruby find.rb --path <dir> --name <expression>
 ```
 
 ## Development

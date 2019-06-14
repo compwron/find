@@ -44,12 +44,24 @@ describe Finder do
   context 'starting path arg' do
     let(:local_dirs) { ['/some_dir'] }
     let(:local_files) { ['/some_dir/file.txt', 'not_in_dir.txt'] }
-    let(:args) { {starting_path: 'some_dir'} }
+    let(:args) { { starting_path: 'some_dir' } }
 
     it "returns files in starting path" do
       FakeFS.with_fresh do
         setup_files(local_dirs, local_files)
         expect(subject).to eq(['file.txt'])
+      end
+    end
+  end
+
+  context 'matches expression' do
+    let(:local_files) { ['matches.txt', 'does_not_match.rb'] }
+    let(:args) { { match_pattern: '*.txt' } }
+
+    it "returns files in starting path" do
+      FakeFS.with_fresh do
+        setup_files(local_dirs, local_files)
+        expect(subject).to eq(['/matches.txt'])
       end
     end
   end
