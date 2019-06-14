@@ -4,7 +4,7 @@ This is designed to be a ruby version of [find](http://man7.org/linux/man-pages/
 
 ## Usage
 
-(coming soon: better usage)
+Note: this is not precisely the contract of `man find` and it should be (TODO)
 ```(bash)
   ruby find.rb 
   ruby find.rb --path <dir>
