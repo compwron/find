@@ -4,6 +4,7 @@ class Finder
   def initialize(options)
     @matching_pattern = interpret_matching_pattern(options[:match_pattern])
     @current_dir = options[:starting_path] || Dir.pwd
+    @only_empty_files = options[:only_empty_files]
   end
 
   def call
@@ -11,6 +12,12 @@ class Finder
       Dir.glob("**/*")
     end.select do |file|
       /#{@matching_pattern}/.match?(file)
+    end.select do |file|
+      if @only_empty_files
+        File.empty?(file)
+      else
+        true
+      end
     end
   end
 

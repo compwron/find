@@ -65,4 +65,18 @@ describe Finder do
       end
     end
   end
+
+  context 'only empty files' do
+    let(:file_with_contents) { 'full.txt' }
+    let(:local_files) { ['empty.txt', file_with_contents] }
+    let(:args) { { only_empty_files: true } }
+
+    it "returns files in starting path" do
+      FakeFS.with_fresh do
+        setup_files(local_dirs, local_files)
+        File.write(file_with_contents, 'data')
+        expect(subject).to eq(['/empty.txt'])
+      end
+    end
+  end
 end

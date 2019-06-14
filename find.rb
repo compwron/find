@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'optparse'
+require_relative 'lib/finder'
 
 options = {}
 OptionParser.new do |opts|
@@ -17,7 +18,10 @@ OptionParser.new do |opts|
   opts.on("-n N", "--name N ", "Files matching pattern") do |pattern|
     options[:match_pattern] = pattern
   end
+
+  opts.on("-e", "--empty", "Only empty files") do |e|
+    options[:only_empty_files] = e
+  end
 end.parse!
 
-require_relative 'lib/finder'
 puts Finder.new(options).call
