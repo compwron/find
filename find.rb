@@ -18,6 +18,6 @@ OptionParser.new do |opts|
     options[:match_pattern] = pattern
   end
 end.parse!
-p options
+
 require_relative 'lib/finder'
 puts Finder.new(options).call

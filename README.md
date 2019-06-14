@@ -9,6 +9,7 @@ Note: this is not precisely the contract of `man find` and it should be (TODO)
   ruby find.rb 
   ruby find.rb --path <dir>
   ruby find.rb --expression <expression> # example: "*.rb"
+  ruby find.rb --path <dir> --expression <expression>
 ```
 
 ## Development
