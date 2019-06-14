@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Finder
-  def initialize(args)
-    _options, starting_path, _expression = args
+  def initialize(options)
+    starting_path = options[:starting_path]
+    matching_pattern = options[:matching_pattern]
     @current_dir = starting_path || Dir.pwd
   end
 

@@ -10,16 +10,14 @@ OptionParser.new do |opts|
     options[:verbose] = v
   end
 
-  opts.on("-name N", "--name N ", "Files matching pattern") do |pattern|
+  opts.on("-p N", "--path N ", "Files in path") do |pattern|
+    options[:starting_path] = pattern
+  end
+
+  opts.on("-e N", "--expression N ", "Files matching pattern") do |pattern|
     options[:match_pattern] = pattern
   end
 end.parse!
-
-p "OPTIONS"
 p options
-
-p "ARGV"
-p ARGV
-args = ARGV
 require_relative 'lib/finder'
-puts Finder.new(args).call
+puts Finder.new(options).call

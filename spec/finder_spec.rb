@@ -6,7 +6,7 @@ require 'fakefs/spec_helpers'
 describe Finder do
   subject { described_class.new(args).call }
 
-  let(:args) { [] }
+  let(:args) { {} }
   let(:local_files) { ['/file.txt'] }
   let(:local_dirs) { [] }
   let(:expected_files) { local_dirs + local_files }
@@ -44,7 +44,7 @@ describe Finder do
   context 'starting path arg' do
     let(:local_dirs) { ['/some_dir'] }
     let(:local_files) { ['/some_dir/file.txt', 'not_in_dir.txt'] }
-    let(:args) { ['options', 'some_dir'] }
+    let(:args) { {starting_path: 'some_dir'} }
 
     it "returns files in starting path" do
       FakeFS.with_fresh do
