@@ -5,3 +5,4 @@ ruby find.rb
 ruby find.rb --path spec
 ruby find.rb --name "*.rb"
 ruby find.rb --empty
+ruby find.rb -L

@@ -2,6 +2,7 @@
 
 require_relative '../lib/finder'
 require 'fakefs/spec_helpers'
+require 'pry'
 
 describe Finder do
   subject { described_class.new(args).call }
@@ -79,4 +80,21 @@ describe Finder do
       end
     end
   end
+
+  context 'symlinks' do
+    let(:normal_filename) { 'normal.txt' }
+    let(:symlink_filename) { 'symlink.txt' }
+    let(:local_files) { [normal_filename] }
+    let(:args) { { follow_symlinks: true } }
+
+    it "returns files in starting path" do
+      FakeFS.with_fresh do
+        setup_files(local_dirs, local_files)
+        FileUtils.ln_s(normal_filename, symlink_filename)
+        expect(subject).to eq([normal_filename, symlink_filename])
+      end
+    end
+  end
+
+  # TODO write test with all the current options
 end

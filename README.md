@@ -11,6 +11,7 @@ Note: this is not precisely the contract of `man find` and it should be (TODO)
   ruby find.rb --name <expression> # example: "*.rb"
   ruby find.rb --path <dir> --name <expression>
   ruby find.rb --empty
+  ruby find.rb -L # symlinks - currently shows symlinks but also files it should not
 ```
 
 ## Development

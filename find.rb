@@ -7,6 +7,7 @@ options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
 
+  # required by OptionParser
   opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
     options[:verbose] = v
   end
@@ -21,6 +22,10 @@ OptionParser.new do |opts|
 
   opts.on("-e", "--empty", "Only empty files") do |e|
     options[:only_empty_files] = e
+  end
+
+  opts.on("-L", "--symlinks", "Find and follow symlinks") do |e|
+    options[:follow_symlinks] = e
   end
 end.parse!
 

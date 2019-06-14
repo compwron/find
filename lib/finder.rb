@@ -5,11 +5,17 @@ class Finder
     @matching_pattern = interpret_matching_pattern(options[:match_pattern])
     @current_dir = options[:starting_path] || Dir.pwd
     @only_empty_files = options[:only_empty_files]
+    @follow_symlinks = options[:follow_symlinks]
   end
 
   def call
     Dir.chdir(@current_dir) do
-      Dir.glob("**/*")
+      if @follow_symlinks
+        # https://stackoverflow.com/questions/357754/can-i-traverse-symlinked-directories-in-ruby-with-a-glob
+        Dir.glob("**/*/**/*")# this only follows a symlink 1 layer deep, find something better
+      else
+        Dir.glob("**/*")
+      end
     end.select do |file|
       /#{@matching_pattern}/.match?(file)
     end.select do |file|
