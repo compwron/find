@@ -7,6 +7,6 @@ class Finder
   end
 
   def call
-    Dir.entries(@current_dir)
+    Dir.glob("**/*")
   end
 end
