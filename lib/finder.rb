@@ -2,11 +2,13 @@
 
 class Finder
   def initialize(args)
-    # for now, do nothing with args
-    @current_dir = Dir.pwd
+    _options, starting_path, _expression = args
+    @current_dir = starting_path || Dir.pwd
   end
 
   def call
-    Dir.glob("**/*")
+    Dir.chdir(@current_dir) do
+      Dir.glob("**/*")
+    end
   end
 end
